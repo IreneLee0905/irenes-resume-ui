@@ -2,16 +2,25 @@ import React, {Component} from 'react';
 import './styles/app.css';
 import Navigation from './components/Navigation';
 import {Provider} from "react-redux";
+import thunkMiddleware from 'redux-thunk';
+import {createLogger} from 'redux-logger';
 import {BrowserRouter, Link, Route} from "react-router-dom";
 import LoginPage from "./components/LoginPage";
-import {combineReducers, createStore} from 'redux'
+import {combineReducers, createStore,applyMiddleware} from 'redux'
 import {reducers} from "./reducer/reducers";
+import AppContextProvider from './provider/AppContextProvider';
 
 
-const store = createStore(combineReducers({...reducers}));
-
+const store = createStore(combineReducers({...reducers}),
+  applyMiddleware(
+    thunkMiddleware,
+    createLogger()
+  )
+);
+AppContextProvider.setStore(store);
 class App extends Component {
   render() {
+
     return (
       <Provider store={store}>
 
@@ -19,8 +28,9 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Navigation/>
-            <Link to={"/aaa"}>aaa</Link>
-            <Route path="/aaa" component={LoginPage}/>
+            <div className="container">
+              <Route path="/login" component={LoginPage}/>
+            </div>
           </div>
         </BrowserRouter>
       </Provider>
