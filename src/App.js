@@ -6,6 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
 import {BrowserRouter, Link, Route} from "react-router-dom";
 import LoginPage from "./components/LoginPage";
+import RegisterPage from "./components/Register";
 import {combineReducers, createStore,applyMiddleware} from 'redux'
 import {reducers} from "./reducer/reducers";
 import AppContextProvider from './provider/AppContextProvider';
@@ -30,6 +31,7 @@ class App extends Component {
             <Navigation/>
             <div className="container">
               <Route path="/login" component={LoginPage}/>
+              <Route path="/register" component={RegisterPage}/>
             </div>
           </div>
         </BrowserRouter>

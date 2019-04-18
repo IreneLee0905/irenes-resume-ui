@@ -1,17 +1,16 @@
 import * as React from "react";
-import FormGroup from "reactstrap/src/FormGroup";
-import Label from "reactstrap/src/Label";
-import Input from "reactstrap/src/Input";
+import {FormGroup, Input, Label} from "reactstrap";
 import {Form} from "react-bootstrap";
-import {login} from "../action/actions";
+import {addOne} from "../action/actions";
+import {CustomerEvents} from "../constant/event";
+import {CustomerUrls} from "../utils/Urls";
+import connect from "react-redux/es/connect/connect";
 
-
-class SignUpPage extends React.Component {
+class Register extends React.Component {
 
   constructor() {
     super();
     this.state = {
-
       id: '',
       account: '',
       password: '',
@@ -19,7 +18,7 @@ class SignUpPage extends React.Component {
       lastName: '',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.submitUser = this.submitUser.bind(this);
+    this.submitCustomer = this.submitCustomer.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,8 +29,10 @@ class SignUpPage extends React.Component {
 
   }
 
-  submitUser() {
-    this.props.dispatch(login(this.state.account, this.state.password));
+  submitCustomer() {
+    this.props.dispatch(addOne(CustomerEvents.ADD_CUSTOMER, this.state, CustomerUrls.REST_CUSTOMER_ADD, () => {
+      console.log("add user success!");
+    }));
   }
 
   handleChange(e) {
@@ -65,7 +66,7 @@ class SignUpPage extends React.Component {
                    onChange={this.handleChange}/>
           </FormGroup>
 
-          <button className="btn btn-info " onClick={this.submitUser}>Submit</button>
+          <button type="button" className="btn btn-info " onClick={this.submitCustomer}>Submit</button>
         </Form>
 
       </div>
@@ -73,6 +74,10 @@ class SignUpPage extends React.Component {
 
   }
 
+}
+const mapStateToProps = (state) => {
+  return {
+    customer: state.customer
+  }
 };
-
-export default SignUpPage;
+export default connect(mapStateToProps)(Register);

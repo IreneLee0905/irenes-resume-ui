@@ -1,5 +1,5 @@
-import user from './user';
+import customer from './customer';
 
 export const reducers = {
-  user,
+  customer,
 };

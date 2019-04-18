@@ -1,15 +1,7 @@
 import fetch from 'isomorphic-fetch';
-import {UserEvents} from '../constant/event';
+import {CustomerEvents} from '../constant/event';
+import WebUtils from "../utils/WebUtils";
 
-export function addUser(name) {
-  console.log(name);
-  let state = {
-    name: name,
-    status: 'login'
-  };
-
-  return {state, type: 'ADD_USER'}
-}
 
 export const login = (account, password) => {
   console.log("LOGIN = " + account);
@@ -23,26 +15,35 @@ export const login = (account, password) => {
       },
       body: 'account=' + account + '&password=' + password
     })
-      .then(responsePromise => {
-        console.log(responsePromise);
-        if(responsePromise.status === 200){
-          responsePromise.json().then(jsonResponse => {
-            return Promise.resolve(jsonResponse);
-          }).then(rs => {
-            console.log(rs);
-            dispatch({
-              type: UserEvents.USER_LOGIN,
-              state: rs
-            });
-          });
-        }else{
+      .then(responsePromise => WebUtils.fetchResponse(responsePromise))
+      .then(response => {
+        dispatch({
+          type: CustomerEvents.CUSTOMER_LOGIN,
+          state: response
+        });
+      });
 
-          //TODO
-          dispatch({type:UserEvents.USER_LOGOUT});
+
+  };
+};
+
+export const addOne = (event, params = {}, url, callback) => {
+  return (dispatch) => {
+    return fetch(url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify(params)
+    })
+      .then(responsePromise => WebUtils.fetchResponse(responsePromise))
+      .then(response => {
+        dispatch({type: event, state: response});
+        if(!!callback){
+          callback(response);
         }
-
-
       })
   }
-
 };

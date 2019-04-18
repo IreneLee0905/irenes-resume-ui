@@ -15,13 +15,13 @@ class LoginPage extends React.Component {
       password: ''
     };
     this.handleChange = this.handleChange.bind(this);
-    this.submitUser = this.submitUser.bind(this);
+    this.submitCustomer = this.submitCustomer.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!!nextProps.user) {
-      if (nextProps.user.id) {
-        this.setState(Object.assign({}, nextProps.user));
+    if (!!nextProps.customer) {
+      if (nextProps.customer.id) {
+        this.setState(Object.assign({}, nextProps.customer));
       } else {
         this.setState({
           id: '',
@@ -33,11 +33,11 @@ class LoginPage extends React.Component {
   }
 
   componentDidMount() {
-    console.log("did mount" + this.props.user.account);
+    console.log("did mount" + this.props.customer.account);
 
   }
 
-  submitUser() {
+  submitCustomer() {
     this.props.dispatch(login(this.state.account, this.state.password));
   }
 
@@ -60,7 +60,7 @@ class LoginPage extends React.Component {
                    onChange={this.handleChange}/>
           </FormGroup>
 
-          <button type="button" className="btn btn-info" onClick={this.submitUser}>Submit</button>
+          <button type="button" className="btn btn-info" onClick={this.submitCustomer}>Submit</button>
         </Form>
         {!!AppContextProvider.isPrincipal() && <div>login successful！</div>}
       </div>
@@ -71,7 +71,7 @@ class LoginPage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    customer: state.customer
   }
 };
 export default connect(mapStateToProps)(LoginPage);

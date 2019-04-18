@@ -1,5 +1,5 @@
-export const UserEvents = {
-  ADD_USER: 'ADD_USER',
-  USER_LOGIN: 'USER_LOGIN',
-  USER_LOGOUT: 'USER_LOGOUT'
+export const CustomerEvents = {
+  ADD_CUSTOMER: 'ADD_CUSTOMER',
+  CUSTOMER_LOGIN: 'CUSTOMER_LOGIN',
+  CUSTOMER_LOGOUT: 'CUSTOMER_LOGOUT'
 };

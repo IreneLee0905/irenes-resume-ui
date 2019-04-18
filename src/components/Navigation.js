@@ -37,7 +37,9 @@ class Navigation extends React.Component {
               <li className="nav-item ">
                 <Link className="nav-link text-right" to={"/login"}>Login</Link>
               </li>
-
+              <li className="nav-item ">
+                <Link className="nav-link text-right" to={"/register"}>Register</Link>
+              </li>
             </ul>
 
           </div>
