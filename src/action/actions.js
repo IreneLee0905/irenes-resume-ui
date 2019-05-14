@@ -1,7 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import {CustomerEvents} from '../constant/event';
 import WebUtils from "../utils/WebUtils";
-
+import HttpStatus from "../utils/HttpStatus";
+import {MessageEvent} from "../constant/event";
 
 export const login = (account, password) => {
   console.log("LOGIN = " + account);
@@ -17,10 +18,18 @@ export const login = (account, password) => {
     })
       .then(responsePromise => WebUtils.fetchResponse(responsePromise))
       .then(response => {
-        dispatch({
-          type: CustomerEvents.CUSTOMER_LOGIN,
-          state: response
-        });
+        if (response.status === HttpStatus.OK) {
+          dispatch({
+            type: CustomerEvents.CUSTOMER_LOGIN,
+            state: response
+          });
+          dispatch({
+            type: MessageEvent.RESET_MESSAGE
+          })
+        } else {
+          dispatch(showAlert("password or account is incorrect..", 'danger'));
+        }
+
       });
 
 
@@ -41,9 +50,24 @@ export const addOne = (event, params = {}, url, callback) => {
       .then(responsePromise => WebUtils.fetchResponse(responsePromise))
       .then(response => {
         dispatch({type: event, state: response});
-        if(!!callback){
+        if (!!callback) {
           callback(response);
         }
       })
+  }
+};
+
+export const showAlert = (message, type) => {
+  return {
+    type: MessageEvent.SHOW_MESSAGE,
+    message: message,
+    msgType: type
+  }
+};
+export const closeAlert = () => {
+  return {
+    type: MessageEvent.RESET_MESSAGE,
+    message: '',
+    msgType: '',
   }
 };

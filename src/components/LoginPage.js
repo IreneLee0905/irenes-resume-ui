@@ -4,6 +4,7 @@ import {Form} from "react-bootstrap";
 import {FormGroup, Button, Input, Label} from "reactstrap";
 import {login} from "../action/actions";
 import AppContextProvider from "./../provider/AppContextProvider";
+import Message from "../container/Message";
 
 class LoginPage extends React.Component {
   constructor() {
@@ -48,6 +49,7 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div className="col-sm-4">
+        <Message/>
         <Form>
           <FormGroup>
             <Label for="account">Account</Label>

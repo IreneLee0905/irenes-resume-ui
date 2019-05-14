@@ -5,6 +5,7 @@ import {addOne} from "../action/actions";
 import {CustomerEvents} from "../constant/event";
 import {CustomerUrls} from "../utils/Urls";
 import connect from "react-redux/es/connect/connect";
+import Message from "../container/Message";
 
 class Register extends React.Component {
 

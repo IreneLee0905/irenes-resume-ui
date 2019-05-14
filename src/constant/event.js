@@ -3,3 +3,8 @@ export const CustomerEvents = {
   CUSTOMER_LOGIN: 'CUSTOMER_LOGIN',
   CUSTOMER_LOGOUT: 'CUSTOMER_LOGOUT'
 };
+
+export const MessageEvent = {
+  SHOW_MESSAGE: 'SHOW_MESSAGE',
+  RESET_MESSAGE: 'RESET_MESSAGE',
+};
