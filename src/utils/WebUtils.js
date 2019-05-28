@@ -1,20 +1,24 @@
 import HttpStatus from './HttpStatus';
-
+import {HOSTNAME} from "../../config";
 
 export default class WebUtils {
 
+
+  static url(url) {
+    return HOSTNAME + url;
+  }
 
   static fetchResponse(response) {
     let responsePromise;
     if (HttpStatus.NO_CONTENT === response.status) {
       responsePromise = Promise.resolve(response);
-    // } else if (HttpStatus.UNAUTHORIZED === response.status) { // session invalid
-    //   responsePromise = response.json().then(ajaxResponse => {
-    //     ajaxResponse.status = response.status;
-    //     AppContextProvider.getStore().dispatch(logout());
-    //     AppContextProvider.getStore().dispatch(toggleLoading(false));
-    //     return Promise.reject(ajaxResponse);
-    //   });
+      // } else if (HttpStatus.UNAUTHORIZED === response.status) { // session invalid
+      //   responsePromise = response.json().then(ajaxResponse => {
+      //     ajaxResponse.status = response.status;
+      //     AppContextProvider.getStore().dispatch(logout());
+      //     AppContextProvider.getStore().dispatch(toggleLoading(false));
+      //     return Promise.reject(ajaxResponse);
+      //   });
     } else if (HttpStatus.SERVICE_UNAVAILABLE === response.status) { // rpc shutdown
       responsePromise = response.json().then(ajaxResponse => {
         // ajaxResponse.status = response.status;

@@ -2,9 +2,10 @@
  * this Util store all urls
  * @type {{REST_CUSTOMER_ADD: string}}
  */
+import WebUtils from "./WebUtils";
 
 export const CustomerUrls = {
-  REGISTER_PAGE: "http://localhost:8000/register",
-  REST_CUSTOMER_ADD:"http://localhost:8000/customer-add",
+  REGISTER_PAGE: WebUtils.url("/register"),
+  REST_CUSTOMER_ADD: WebUtils.url("/customer-add"),
 
 };

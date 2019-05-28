@@ -7,7 +7,7 @@ import {MessageEvent} from "../constant/event";
 export const login = (account, password) => {
   console.log("LOGIN = " + account);
   return function (dispatch) {
-    return fetch('http://localhost:8000/login', {
+    return fetch(WebUtils.url("/login"), {
       method: 'POST',
       credentials: 'same-origin',
       headers: {

@@ -73,7 +73,7 @@ class LoginPage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    customer: state.customer
+    customer: state.customer.entity
   }
 };
 export default connect(mapStateToProps)(LoginPage);

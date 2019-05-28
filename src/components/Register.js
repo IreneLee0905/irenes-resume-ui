@@ -1,7 +1,7 @@
 import * as React from "react";
 import {FormGroup, Input, Label} from "reactstrap";
 import {Form} from "react-bootstrap";
-import {addOne} from "../action/actions";
+import {addOne, showAlert} from "../action/actions";
 import {CustomerEvents} from "../constant/event";
 import {CustomerUrls} from "../utils/Urls";
 import connect from "react-redux/es/connect/connect";
@@ -32,7 +32,12 @@ class Register extends React.Component {
 
   submitCustomer() {
     this.props.dispatch(addOne(CustomerEvents.ADD_CUSTOMER, this.state, CustomerUrls.REST_CUSTOMER_ADD, () => {
-      console.log("add user success!");
+      if (!!this.props.message) {
+        this.props.dispatch(showAlert(this.props.message, "danger"));
+      }else{
+        this.props.dispatch(showAlert("successfully create a new account", "info"));
+      }
+
     }));
   }
 
@@ -45,6 +50,7 @@ class Register extends React.Component {
     return (
 
       <div>
+        <Message/>
         <Form>
           <FormGroup>
             <Label for="account">Account</Label>
@@ -76,9 +82,11 @@ class Register extends React.Component {
   }
 
 }
+
 const mapStateToProps = (state) => {
   return {
-    customer: state.customer
+    customer: state.customer.entity,
+    message: state.customer.message
   }
 };
 export default connect(mapStateToProps)(Register);
