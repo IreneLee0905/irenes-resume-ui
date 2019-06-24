@@ -48,7 +48,8 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <div className="col-sm-4">
+      <div className="col-sm-4 mx-auto">
+        <br/>
         <Message/>
         <Form>
           <FormGroup>
@@ -62,7 +63,7 @@ class LoginPage extends React.Component {
                    onChange={this.handleChange}/>
           </FormGroup>
 
-          <button type="button" className="btn btn-info" onClick={this.submitCustomer}>Submit</button>
+          <button type="button" className="btn btn-info btn-block" onClick={this.submitCustomer}>Submit</button>
         </Form>
         {!!AppContextProvider.isPrincipal() && <div>login successful！</div>}
       </div>

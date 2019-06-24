@@ -4,14 +4,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: ["./src/index.js"],
   output: {
-    path:__dirname + '/dist',
+    path: __dirname + '/dist',
     filename: "bundles.js",
   },
   resolve: {
-    extensions: ['.js','.jsx','.css']
+    extensions: ['.js', '.jsx', '.css']
   },
-  module:{
-    rules:[
+  module: {
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -21,6 +21,13 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
       }
+      , {
+        test: /\.png$/,
+        loader: "url-loader?limit=100000"
+      }, {
+        test: /\.jpg$/,
+        loader: "file-loader"
+      },
     ]
   },
   plugins: [
@@ -29,3 +36,4 @@ module.exports = {
     })
   ]
 };
+
