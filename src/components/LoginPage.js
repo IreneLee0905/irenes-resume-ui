@@ -1,7 +1,10 @@
 import React from "react";
 import {connect} from 'react-redux'
-import {Form} from "react-bootstrap";
-import {FormGroup, Button, Input, Label} from "reactstrap";
+// import {Form} from "react-bootstrap";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button'
+
+// import {FormGroup, Button, Input, Label} from "reactstrap";
 import {login} from "../action/actions";
 import AppContextProvider from "./../provider/AppContextProvider";
 import Message from "../container/Message";
@@ -52,18 +55,26 @@ class LoginPage extends React.Component {
         <br/>
         <Message/>
         <Form>
-          <FormGroup>
-            <Label for="account">Account</Label>
-            <Input type="text" name="account" id="account" placeholder="Account" value={this.state.account}
-                   onChange={this.handleChange}/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="examplePassword">Password</Label>
-            <Input type="password" name="password" id="examplePassword" value={this.state.password}
-                   onChange={this.handleChange}/>
-          </FormGroup>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" name="account" value={this.state.account}
+                          onChange={this.handleChange}/>
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
 
-          <button type="button" className="btn btn-info btn-block" onClick={this.submitCustomer}>Submit</button>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" name="password" value={this.state.password}
+                          onChange={this.handleChange}/>
+          </Form.Group>
+          <Form.Group controlId="formBasicChecbox">
+            <Form.Check type="checkbox" label="Check me out"/>
+          </Form.Group>
+          <Button variant="primary" type="button" onClick={this.submitCustomer}>
+            Submit
+          </Button>
         </Form>
         {!!AppContextProvider.isPrincipal() && <div>login successful！</div>}
       </div>

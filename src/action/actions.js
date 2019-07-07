@@ -23,9 +23,7 @@ export const login = (account, password) => {
             type: CustomerEvents.CUSTOMER_LOGIN,
             state: response
           });
-          dispatch({
-            type: MessageEvent.RESET_MESSAGE
-          })
+          dispatch(closeAlert());
         } else {
           dispatch(showAlert("password or account is incorrect..", 'danger'));
         }
@@ -66,8 +64,6 @@ export const showAlert = (message, type) => {
 };
 export const closeAlert = () => {
   return {
-    type: MessageEvent.RESET_MESSAGE,
-    message: '',
-    msgType: '',
+    type: MessageEvent.RESET_MESSAGE
   }
 };

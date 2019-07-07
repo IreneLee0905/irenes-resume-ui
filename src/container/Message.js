@@ -1,6 +1,6 @@
 import * as React from "react";
 import {connect} from 'react-redux'
-import {Alert} from 'reactstrap';
+import Alert from 'react-bootstrap/Alert'
 import {closeAlert} from "../action/actions";
 
 
@@ -23,7 +23,7 @@ class Message extends React.Component {
 
   render() {
     return (
-      <Alert color={this.state.color} isOpen={this.state.visible} toggle={this.onDismiss}>
+      <Alert variant={this.state.color} show={this.state.visible} toggle={this.onDismiss}>
         {this.state.message}
       </Alert>
     )

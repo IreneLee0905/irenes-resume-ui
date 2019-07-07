@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
+const path = require('path');
 module.exports = {
   entry: ["./src/index.js"],
   output: {
@@ -28,12 +28,19 @@ module.exports = {
         test: /\.jpg$/,
         loader: "file-loader"
       },
+
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./index.html"
     })
-  ]
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 8080,
+    historyApiFallback: true
+  }
 };
 
