@@ -17,7 +17,9 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.1",
     "redux-thunk": "^2.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "webpack": "^4.35.2",
+    "webpack-dev-middleware": "^3.7.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
@@ -35,9 +37,7 @@
     "prop-types": "^15.7.2",
     "redux-devtools": "^3.4.1",
     "style-loader": "^0.23.1",
-    "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5",
-    "webpack-dev-middleware": "^3.7.0",
     "webpack-dev-server": "^3.7.2"
   },
   "scripts": {
