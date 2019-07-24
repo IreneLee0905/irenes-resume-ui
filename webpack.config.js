@@ -1,11 +1,14 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 const path = require('path');
 module.exports = {
   entry: ["./src/index.js"],
   output: {
     path: __dirname + '/dist',
-    filename: "bundles.js",
+    filename: '[name].js',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.jsx', '.css']
@@ -32,6 +35,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "./index.html"
     })
@@ -41,6 +45,19 @@ module.exports = {
     compress: true,
     port: 8080,
     historyApiFallback: true
+  },
+  optimization: {
+    moduleIds: 'hashed',
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
   }
 };
 

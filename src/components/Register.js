@@ -1,5 +1,4 @@
 import * as React from "react";
-// import {Form, Input, Label} from "reactstrap";
 import Form from 'react-bootstrap/Form';
 import {addOne, showAlert} from "../action/actions";
 import {CustomerEvents} from "../constant/event";
@@ -9,8 +8,12 @@ import Message from "../container/Message";
 import Rocket from "../images/rocket.jpg";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import DatePicker from "react-datepicker";
 
-// import Form from 'react-bootstrap/Form'
+//import css for react-datepicker
+import "react-datepicker/dist/react-datepicker.css";
+import PropTypes from "prop-types";
+
 class Register extends React.Component {
 
   constructor() {
@@ -19,11 +22,14 @@ class Register extends React.Component {
       id: '',
       account: '',
       password: '',
+      confirmPassword: '',
       firstName: '',
       lastName: '',
+      birthday: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.submitCustomer = this.submitCustomer.bind(this);
+    this.handleBirthdayChange = this.handleBirthdayChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,6 +55,9 @@ class Register extends React.Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  handleBirthdayChange(e) {
+    this.setState({birthday: e});
+  }
 
   render() {
     return (
@@ -64,9 +73,9 @@ class Register extends React.Component {
           <div className="col-sm-6">
             <h2>Join Us</h2>
             <Form onSubmit={this.submitCustomer}>
-              <Form.Group controlId="formBasicEmail">
+              <Form.Group controlId="email">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter your email" onChange={this.handleChange}
+                <Form.Control name="account" type="email" placeholder="Enter your email" onChange={this.handleChange}
                               value={this.state.account}/>
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
@@ -75,11 +84,13 @@ class Register extends React.Component {
               <Form.Row>
                 <Form.Group as={Col} controlId="password">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password"/>
+                  <Form.Control name="password" type="password" placeholder="Password" onChange={this.handleChange}
+                                value={this.state.password}/>
                 </Form.Group>
                 <Form.Group as={Col} controlId="confirmPassword">
                   <Form.Label>Confirm Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password"/>
+                  <Form.Control name="confirmPassword" type="password" placeholder="Password"
+                                onChange={this.handleChange} value={this.state.confirmPassword}/>
                 </Form.Group>
               </Form.Row>
               <Form.Row>
@@ -95,32 +106,15 @@ class Register extends React.Component {
               <Form.Row>
                 <Form.Group as={Col} controlId="date">
                   <Form.Label>Birthday</Form.Label>
-                  <Form.Control as="select">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                  </Form.Control>
-                </Form.Group>
-                <Form.Group as={Col} controlId="month">
-                  <Form.Label> </Form.Label>
-                  <Form.Control as="select">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                  </Form.Control>
-                </Form.Group>
-                <Form.Group as={Col} controlId="year">
-                  <Form.Label> </Form.Label>
-                  <Form.Control as="select">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                  </Form.Control>
+                  <DatePicker className="form-control"
+                              selected={this.state.birthday}
+                              onChange={this.handleBirthdayChange}
+                  />
                 </Form.Group>
               </Form.Row>
+              <div>
+
+              </div>
               <Form.Group controlId="formGridAddress1">
                 <Form.Label>Address</Form.Label>
                 <Form.Control placeholder="1234 Main St"/>
