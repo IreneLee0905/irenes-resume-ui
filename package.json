@@ -41,11 +41,11 @@
     "webpack-dev-server": "^3.7.2"
   },
   "scripts": {
-    "start": "webpack-dev-server -d --config webpack.config.js ",
+    "start": "node server.js",
+    "start-dev": "webpack-dev-server -d --config webpack.config.js ",
     "build": "webpack -p --progress --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --watch",
-    "server": "node server.js"
+    "watch": "webpack --watch"
   },
   "author": "Irene Lee",
   "license": "ISC"
