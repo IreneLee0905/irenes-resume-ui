@@ -1,11 +1,11 @@
 import HttpStatus from './HttpStatus';
-import {HOSTNAME} from "../../config";
+import {API_URL} from "../../config";
 
 export default class WebUtils {
 
 
   static url(url) {
-    return HOSTNAME + url;
+    return API_URL + url;
   }
 
   static fetchResponse(response) {

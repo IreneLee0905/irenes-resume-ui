@@ -25,7 +25,14 @@ class Register extends React.Component {
       confirmPassword: '',
       firstName: '',
       lastName: '',
-      birthday: ''
+      birthday: '',
+      gender: '',
+      address: '',
+      city: '',
+      state: '',
+      zip: '',
+      
+
     };
     this.handleChange = this.handleChange.bind(this);
     this.submitCustomer = this.submitCustomer.bind(this);
@@ -41,6 +48,9 @@ class Register extends React.Component {
   }
 
   submitCustomer() {
+  
+    console.log(this.state);
+    console.log(process.env.PORT);
     this.props.dispatch(addOne(CustomerEvents.ADD_CUSTOMER, this.state, CustomerUrls.REST_CUSTOMER_ADD, () => {
       if (!!this.props.message) {
         this.props.dispatch(showAlert(this.props.message, "danger"));
@@ -63,6 +73,8 @@ class Register extends React.Component {
     return (
 
       <div>
+        <br/>
+        <br/>
         <Message/>
         <div className="row">
           <br/>
@@ -71,8 +83,9 @@ class Register extends React.Component {
             <img className="img-fluid" src={Rocket} alt="rocket image"/>
           </div>
           <div className="col-sm-6">
-            <h2>Join Us</h2>
-            <Form onSubmit={this.submitCustomer}>
+            <h1>Join Us</h1>
+            <br/>
+            <Form >
               <Form.Group controlId="email">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control name="account" type="email" placeholder="Enter your email" onChange={this.handleChange}
@@ -96,11 +109,11 @@ class Register extends React.Component {
               <Form.Row>
                 <Form.Group as={Col} controlId="firstName">
                   <Form.Label>First Name</Form.Label>
-                  <Form.Control type="text" placeholder="First Name"/>
+                  <Form.Control type="text" placeholder="First Name" name="firstName" onChange={this.handleChange} value={this.state.firstName} />
                 </Form.Group>
                 <Form.Group as={Col} controlId="lastName">
                   <Form.Label>Last Name</Form.Label>
-                  <Form.Control type="text" placeholder="Last Name"/>
+                  <Form.Control type="text" placeholder="Last Name" name="lastName" onChange={this.handleChange} value={this.state.lastName} />
                 </Form.Group>
               </Form.Row>
               <Form.Row>
@@ -111,38 +124,44 @@ class Register extends React.Component {
                               onChange={this.handleBirthdayChange}
                   />
                 </Form.Group>
+                <Form.Group as={Col} controlId="Country">
+                <Form.Label>Gender</Form.Label>
+                  <Form.Control as="select" name="gender" onChange={this.handleChange} value={this.state.gender} >
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </Form.Control>
+                </Form.Group>
               </Form.Row>
               <div>
 
               </div>
-              <Form.Group controlId="formGridAddress1">
+              <Form.Group controlId="address">
                 <Form.Label>Address</Form.Label>
-                <Form.Control placeholder="1234 Main St"/>
+                <Form.Control type="text" placeholder="1234 Main St" name="address" onChange={this.handleChange} value={this.state.address} />
               </Form.Group>
               <Form.Row>
-                <Form.Group as={Col} controlId="formGridCity">
+                <Form.Group as={Col} controlId="city">
                   <Form.Label>City</Form.Label>
-                  <Form.Control/>
+                  <Form.Control type="text" name="city" onChange={this.handleChange} value={this.state.city}/>
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridState">
+                <Form.Group as={Col} controlId="state">
                   <Form.Label>State</Form.Label>
-                  <Form.Control as="select">
-                    <option>Choose...</option>
-                    <option>...</option>
-                  </Form.Control>
+                  <Form.Control type="text" name="state" onChange={this.handleChange} value={this.state.state}/>
+                
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridZip">
+                <Form.Group as={Col} controlId="zip">
                   <Form.Label>Zip</Form.Label>
-                  <Form.Control/>
+                  <Form.Control type="text" name="zip" onChange={this.handleChange} value={this.state.zip}/>
                 </Form.Group>
               </Form.Row>
 
               <Form.Group controlId="formBasicChecbox">
                 <Form.Check type="checkbox" label="Check me out"/>
               </Form.Group>
-              <Button variant="info" type="submit">
+              <Button variant="info" type="button" onClick={this.submitCustomer}>
                 Submit
               </Button>
             </Form>
