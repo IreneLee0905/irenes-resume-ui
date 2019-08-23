@@ -36,6 +36,10 @@ module.exports = () => {
           use: 'babel-loader'
         },
         {
+          test: /\.svg$/,
+          loader: 'svg-inline-loader'
+        },
+        {
           test: /\.css$/,
           use: ["style-loader", "css-loader"]
         }
@@ -53,7 +57,8 @@ module.exports = () => {
       new webpack.DefinePlugin(envKeys),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        template: "./index.html"
+        template: "./index.html",
+        favicon: './favicon.ico',
       })
     ],
     devServer: {

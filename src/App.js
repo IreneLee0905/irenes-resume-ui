@@ -7,6 +7,8 @@ import {createLogger} from 'redux-logger';
 import {BrowserRouter, Link, Route} from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/Register";
+import HomePage from "./components/HomePage";
+import ResumePage from "./components/ResumePage";
 import {combineReducers, createStore,applyMiddleware} from 'redux'
 import {reducers} from "./reducer/reducers";
 import AppContextProvider from './provider/AppContextProvider';
@@ -29,9 +31,11 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Navigation/>
-            <div className="container">
+            <div >
+              <Route exact path="/" component={HomePage}/>
               <Route path="/login" component={LoginPage}/>
               <Route path="/register" component={RegisterPage}/>
+              <Route path="/resume" component={ResumePage}/>
             </div>
           </div>
         </BrowserRouter>
