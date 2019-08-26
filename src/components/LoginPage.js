@@ -52,33 +52,36 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <Container className="bg-white" fluid style={{padding:"50px"}}>
-        <div className="col-sm-4 mx-auto ">
-          <br/>
-          <Message/>
-          <Form>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" name="account" value={this.state.account}
-                            onChange={this.handleChange}/>
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
+      <Container>
+        <div className="col-sm-5 mx-auto login-block" >
+          <div>
+            <Message/>
+            <h1 className="text-center">Login</h1><br/>
+            <Form>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" name="account" value={this.state.account}
+                              onChange={this.handleChange}/>
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" name="password" value={this.state.password}
-                            onChange={this.handleChange}/>
-            </Form.Group>
-            <Form.Group controlId="formBasicChecbox">
-              <Form.Check type="checkbox" label="Check me out"/>
-            </Form.Group>
-            <Button variant="primary" type="button" onClick={this.submitCustomer}>
-              Submit
-            </Button>
-          </Form>
-          {!!AppContextProvider.isPrincipal() && <div>login successful！</div>}
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" name="password" value={this.state.password}
+                              onChange={this.handleChange}/>
+              </Form.Group>
+              {/*<Form.Group controlId="formBasicChecbox">*/}
+              {/*  <Form.Check type="checkbox" label="Check me out"/>*/}
+              {/*</Form.Group>*/}
+              <br/>
+              <Button variant="info" type="button" onClick={this.submitCustomer} block>
+                Login
+              </Button>
+            </Form>
+            {!!AppContextProvider.isPrincipal() && <div>login successful！</div>}
+          </div>
         </div>
       </Container>
     )
