@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 // import {Form} from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
-
+// import HookComponent from "./HookComponent";
 // import {FormGroup, Button, Input, Label} from "reactstrap";
 import {login} from "../action/actions";
 import AppContextProvider from "./../provider/AppContextProvider";
@@ -57,6 +57,7 @@ class LoginPage extends React.Component {
           <div>
             <Message/>
             <h1 className="text-center">Login</h1><br/>
+            {/*<HookComponent/>*/}
             <Form>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>

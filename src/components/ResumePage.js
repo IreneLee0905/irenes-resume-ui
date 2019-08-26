@@ -115,7 +115,7 @@ class ResumePage extends React.Component {
             <br/><br/>
             <h1>Programming Skills</h1>
 
-            <Table responsive className="table-borderless" style={{color:"#E7C6D9",margin:"15px"}}>
+            <Table  className="table-borderless" style={{color:"#E7C6D9",margin:"15px"}}>
               <tr>
                 <td width="20%" >Java</td>
                 <td><ProgressBar now={100}/></td>

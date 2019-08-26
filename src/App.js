@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './styles/app.css';
+
 import Navigation from './components/Navigation';
 import {Provider} from "react-redux";
 import thunkMiddleware from 'redux-thunk';
@@ -26,7 +26,6 @@ class App extends Component {
 
     return (
       <Provider store={store}>
-
 
         <BrowserRouter>
           <div>

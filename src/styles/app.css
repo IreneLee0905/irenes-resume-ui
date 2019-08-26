@@ -1,10 +1,9 @@
 
-
-
 .react-datepicker-wrapper, .react-datepicker__input-container {
     display: block !important;
 }
-body{
+
+body {
     /*background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);*/
     background-image: url("../images/bg.jpg");
     /*background-position: center; !* Center the image *!*/
@@ -12,12 +11,21 @@ body{
     background-size: cover; /* Resize the background image to cover the entire container */
     background-attachment: fixed;
 }
+
 .bg-white {
-    background : white;
-}
-.nav-link .navbar-nav{
-    /*margin-right: 10px;*/
-    font-size: 18px;
-    color: rgba(255,255,255,1);
+    background: white;
 }
 
+
+.login-block {
+    /*background: white;*/
+    background-image: url("../images/bg-white.jpg");
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    background-attachment: fixed;
+    padding: 50px 50px;
+    margin-top: 100px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+
+}

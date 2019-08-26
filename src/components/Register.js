@@ -9,7 +9,7 @@ import Rocket from "../images/rocket.jpg";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import DatePicker from "react-datepicker";
-import { Formik } from 'formik';
+// import RegisterForm from "./RegisterForm";
 //import css for react-datepicker
 import "react-datepicker/dist/react-datepicker.css";
 import PropTypes from "prop-types";
@@ -82,30 +82,6 @@ class Register extends React.Component {
 
   render() {
     return (
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validate={values => {
-          let errors = {};
-          if (!values.email) {
-            errors.email = 'Required';
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = 'Invalid email address';
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
-      >
-
-        {({})}=>(
-
-        )
 
       <Container fluid className="bg-white">
         <Container>
@@ -120,6 +96,7 @@ class Register extends React.Component {
             </div>
             <div className="col-sm-6">
               <h1>Join Us</h1>
+              {/*<RegisterForm/>*/}
               <br/>
               <Form noValidate validated={this.state.validated} onSubmit={this.submitCustomer}>
                 <Form.Group controlId="email">
